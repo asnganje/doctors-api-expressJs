@@ -8,6 +8,10 @@ const app = express()
 const port = process.env.PORT
 const url = process.env.MONGO_URI
 
+app.get('/', (req, res) => {
+  res.status(200).send("Home Page")
+})
+
 const start = async () => {
   try {
     await connectDB(url)

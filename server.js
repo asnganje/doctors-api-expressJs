@@ -9,6 +9,7 @@ const app = express()
 const port = process.env.PORT
 const url = process.env.MONGO_URI
 
+app.use(express.json())
 app.use('/api/v1/doctors', doctorsRouter)
 
 const start = async () => {

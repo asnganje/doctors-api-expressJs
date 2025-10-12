@@ -1,6 +1,7 @@
 import express from "express"
 import dotenv from "dotenv"
 import connectDB from "./db/connect.js"
+import doctorsRouter from "./routes/doctorsRouter.js"
 
 dotenv.config()
 
@@ -8,9 +9,7 @@ const app = express()
 const port = process.env.PORT
 const url = process.env.MONGO_URI
 
-app.get('/', (req, res) => {
-  res.status(200).send("Home Page")
-})
+app.use('/api/v1/doctors', doctorsRouter)
 
 const start = async () => {
   try {

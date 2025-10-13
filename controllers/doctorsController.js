@@ -10,18 +10,27 @@ export const createDoctor = async (req,res) => {
   res.status(StatusCodes.CREATED).json({msg:'Doctor created', data: doctor})
 }
 
-export const getDoctor = (req,res) => {
-  res.status(StatusCodes.CREATED).json({msg:'Doctor found'})
+export const getDoctor = async (req,res) => {
+  const { id } = req.params
+  const doctor = await Doctor.findOne({_id:id})
+  if(!doctor) throw new Error(`No doctor with id ${id}`)
+  res.status(StatusCodes.OK).json({msg:'Doctor found', data: doctor})
 }
 
-export const getAllDoctors = (req,res) => {
-  res.status(StatusCodes.CREATED).json({msg:'All Doctors'})
+export const getAllDoctors = async (req,res) => {
+  const doctors = await Doctor.find({})
+  res.status(StatusCodes.OK).json({msg:'All Doctors', nbHits: doctors.length, data: doctors})
 }
 
-export const updateDoctor = (req,res) => {
-  res.status(StatusCodes.CREATED).json({msg:'Doctor updated'})
+export const updateDoctor = async (req,res) => {
+  const {id} = req.params
+  const updatedDoctor = await Doctor.findByIdAndUpdate({_id: id}, req.body, {new: true})
+  if(!updatedDoctor) throw new Error(`No doctor with id ${id}`)
+  res.status(StatusCodes.OK).json({msg:'Doctor updated', data: updatedDoctor})
 }
 
-export const removeDoctor = (req,res) => {
-  res.status(StatusCodes.CREATED).json({msg:'Doctor deleted'})
+export const removeDoctor = async (req,res) => {
+  const {id} = req.params
+  await Doctor.findByIdAndDelete({_id: id})
+  res.status(StatusCodes.OK).json({msg:'Doctor deleted'})
 }

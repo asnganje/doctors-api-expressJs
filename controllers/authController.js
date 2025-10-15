@@ -1,7 +1,11 @@
 import { StatusCodes } from "http-status-codes"
+import User from "../models/UserModel.js"
 
-export const register = (req,res) => {
-  res.status(StatusCodes.CREATED).json({msg:'registration successful'})
+export const register = async (req,res) => {
+  const isFirst = await User.countDocuments() === 0
+  req.body.role = isFirst?"admin":"user"
+  const user = await User.create(req.body)
+  res.status(StatusCodes.CREATED).json({msg:'registration successful', data: user})
 }
 
 export const login = (req,res) => {

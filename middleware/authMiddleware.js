@@ -4,6 +4,7 @@ import { verifyToken } from "../utils/tokenUtils.js"
 
 export const authenticateUser = (req,res,next) => {
   const {token} = req.cookies
+  
   if (!token) {
     throw new CustomError("Unauthenticated User detected", StatusCodes.UNAUTHORIZED)
   }

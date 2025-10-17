@@ -16,7 +16,8 @@ const DoctorSchema = new mongoose.Schema({
   },
   picture: {
     type:String,
-    required: [true, 'Please provide picture']
+    // required: [true, 'Please provide picture'],
+    default:"test"
   },
 },
 { timestamps: true }

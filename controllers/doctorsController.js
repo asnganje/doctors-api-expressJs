@@ -17,7 +17,7 @@ export const getDoctor = async (req,res) => {
   res.status(StatusCodes.OK).json({msg:'Doctor found', data: doctor})
 }
 
-export const getAllDoctors = async (req,res) => {
+export const getAllDoctors = async (req,res) => { 
   const doctors = await Doctor.find({})
   res.status(StatusCodes.OK).json({msg:'All Doctors', nbHits: doctors.length, data: doctors})
 }

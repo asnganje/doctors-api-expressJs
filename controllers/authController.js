@@ -16,6 +16,7 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
+
   if (!user) {
     throw new CustomError("User not found", StatusCodes.NOT_FOUND);
   }
@@ -23,8 +24,9 @@ export const login = async (req, res) => {
   if (!isMatch) {
     throw new CustomError("Invalid credentials", StatusCodes.UNAUTHORIZED);
   }
+
   const payload = {userId:user._id, role: user.role}
-  const token = createJWT(payload)
+  const token = createJWT(payload)  
   res.cookie('token', token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production", 

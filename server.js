@@ -17,6 +17,7 @@ const port = process.env.PORT;
 const url = process.env.MONGO_URI;
 
 app.use(cors({
+  // origin: "http://localhost:5173/",
   origin: "https://doctors-frontend-i725.onrender.com",
   credentials: true
 }))

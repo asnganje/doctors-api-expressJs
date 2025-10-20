@@ -1,5 +1,5 @@
 import { OpenAI } from "openai"
-import { CustomError } from "../middleware/customErrorHandler"
+import { CustomError } from "../middleware/customErrorHandler.js"
 import { StatusCodes } from "http-status-codes"
 
 

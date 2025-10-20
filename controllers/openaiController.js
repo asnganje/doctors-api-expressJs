@@ -10,6 +10,7 @@ const openai = new OpenAI({
 export const aiChat = async (req, res) => {
   try {
     const {message} = req.body
+    
     if (!message) throw CustomError("Message is required!")
     const response = await openai.chat.completions.create({
       model: "gpt-4o-mini",
@@ -22,7 +23,9 @@ export const aiChat = async (req, res) => {
           role: "user",
           content: message
         }
-      ]
+      ],
+      max_completion_tokens: 50,
+      temperature:0.6
   })
   const reply = response.choices[0].message.content;
   res.json({reply})

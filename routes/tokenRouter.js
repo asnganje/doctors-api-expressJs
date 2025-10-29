@@ -1,8 +1,8 @@
-import { Router } from "express";
-import { tokenHandler } from "../controllers/tokenController.js";
+// import { Router } from "express";
+// import { tokenHandler } from "../controllers/tokenController.js";
 
-const router = Router();
+// const router = Router();
 
-router.post('/', tokenHandler)
+// router.post('/', tokenHandler)
 
-export default router;
+// export default router;

@@ -7,7 +7,7 @@ import connectDB from "./db/connect.js";
 import doctorsRouter from "./routes/doctorsRouter.js";
 import authRouter from "./routes/authRouter.js";
 import errorHandler from "./middleware/errorRouteHandler.js";
-import tokenRouter from "./routes/tokenRouter.js";
+// import tokenRouter from "./routes/tokenRouter.js";
 import aiRouter from "./routes/openaiRouter.js";
 
 dotenv.config();
@@ -26,7 +26,7 @@ app.use(cookieParser())
 app.use(express.json());
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/doctors", doctorsRouter);
-app.use("/refresh-token", tokenRouter)
+// app.use("/refresh-token", tokenRouter)
 app.use("/api/v1/ai", aiRouter)
 app.use(errorHandler);
 
